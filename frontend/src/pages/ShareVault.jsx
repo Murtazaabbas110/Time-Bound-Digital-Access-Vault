@@ -49,16 +49,16 @@ export default function ShareVault() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 py-12">
-      <div className="container mx-auto px-6 max-w-4xl">
+    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 py-8 md:py-12">
+      <div className="container mx-auto px-4 md:px-6 max-w-5xl">
         <div className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-          <div className="card-body p-8">
+          <div className="card-body p-4 md:p-8">
             {/* Header Section */}
-            <div className="text-center mb-8">
+            <div className="text-center mb-6 md:mb-8">
               <div className="flex justify-center mb-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-16 w-16 text-primary animate-bounce"
+                  className="h-12 w-12 md:h-16 md:w-16 text-primary animate-bounce"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -71,10 +71,10 @@ export default function ShareVault() {
                   />
                 </svg>
               </div>
-              <h1 className="text-4xl font-extrabold text-primary animate-fade-in">
+              <h1 className="text-2xl md:text-4xl font-extrabold text-primary animate-fade-in">
                 Generate Share Link
               </h1>
-              <p className="text-lg text-base-content/70 mt-2">
+              <p className="text-base md:text-lg text-base-content/70 mt-2">
                 Vault:{" "}
                 <span className="font-semibold text-primary">
                   {vaultTitle || "Loading..."}
@@ -83,13 +83,13 @@ export default function ShareVault() {
             </div>
 
             {!shareUrl ? (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-lg font-semibold flex items-center">
+                    <span className="label-text text-base md:text-lg font-semibold flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2 text-primary"
+                        className="h-4 w-4 md:h-5 md:w-5 mr-2 text-primary"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -108,17 +108,17 @@ export default function ShareVault() {
                     type="datetime-local"
                     value={expiresAt}
                     onChange={(e) => setExpiresAt(e.target.value)}
-                    className="input input-bordered input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
+                    className="input input-bordered input-md md:input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
                     required
                   />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-lg font-semibold flex items-center">
+                    <span className="label-text text-base md:text-lg font-semibold flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2 text-primary"
+                        className="h-4 w-4 md:h-5 md:w-5 mr-2 text-primary"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -144,17 +144,17 @@ export default function ShareVault() {
                     min="0"
                     value={maxViews}
                     onChange={(e) => setMaxViews(parseInt(e.target.value) || 0)}
-                    className="input input-bordered input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
+                    className="input input-bordered input-md md:input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
                     placeholder="1"
                   />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-lg font-semibold flex items-center">
+                    <span className="label-text text-base md:text-lg font-semibold flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2 text-primary"
+                        className="h-4 w-4 md:h-5 md:w-5 mr-2 text-primary"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -174,20 +174,20 @@ export default function ShareVault() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Leave empty for no password"
-                    className="input input-bordered input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
+                    className="input input-bordered input-md md:input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
                   />
                 </div>
 
-                <div className="card-actions justify-end mt-10 space-x-4">
+                <div className="card-actions justify-center md:justify-end mt-8 md:mt-10 space-x-2 md:space-x-4">
                   <button
                     type="button"
                     onClick={() => navigate("/")}
-                    className="btn btn-ghost btn-lg hover:bg-base-200 transition-all duration-300 transform hover:scale-105"
+                    className="btn btn-ghost btn-md md:btn-lg hover:bg-base-200 transition-all duration-300 transform hover:scale-105"
                     disabled={loading}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 mr-2"
+                      className="h-4 w-4 md:h-5 md:w-5 mr-2"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -203,7 +203,7 @@ export default function ShareVault() {
                   </button>
                   <button
                     type="submit"
-                    className="btn btn-primary btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="btn btn-primary btn-md md:btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
                     disabled={loading}
                   >
                     {loading ? (
@@ -215,7 +215,7 @@ export default function ShareVault() {
                       <>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 mr-2"
+                          className="h-4 w-4 md:h-5 md:w-5 mr-2"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -234,11 +234,11 @@ export default function ShareVault() {
                 </div>
               </form>
             ) : (
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 <div className="alert alert-success shadow-lg animate-bounce">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="stroke-current shrink-0 h-6 w-6"
+                    className="stroke-current shrink-0 h-5 w-5 md:h-6 md:w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
@@ -249,15 +249,17 @@ export default function ShareVault() {
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span>Share link created successfully!</span>
+                  <span className="text-sm md:text-base">
+                    Share link created successfully!
+                  </span>
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-lg font-semibold flex items-center">
+                    <span className="label-text text-base md:text-lg font-semibold flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2 text-primary"
+                        className="h-4 w-4 md:h-5 md:w-5 mr-2 text-primary"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -276,17 +278,17 @@ export default function ShareVault() {
                     type="text"
                     value={shareUrl}
                     readOnly
-                    className="input input-bordered input-lg w-full focus:input-primary transition-all duration-300 mb-4"
+                    className="input input-bordered input-md md:input-lg w-full focus:input-primary transition-all duration-300 mb-4"
                   />
                   <div className="flex justify-center">
                     <button
                       type="button"
                       onClick={copyToClipboard}
-                      className="btn btn-primary btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      className="btn btn-primary btn-md md:btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 mr-2"
+                        className="h-5 w-5 md:h-6 md:w-6 mr-2"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -303,19 +305,19 @@ export default function ShareVault() {
                   </div>
                 </div>
 
-                <div className="bg-base-200 rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-semibold text-center mb-4 text-primary">
+                <div className="bg-base-200 rounded-2xl p-4 md:p-6 shadow-lg">
+                  <h3 className="text-lg md:text-xl font-semibold text-center mb-4 text-primary">
                     Link Details
                   </h3>
                   <div className="space-y-2 text-center">
-                    <p className="text-sm opacity-80">
+                    <p className="text-xs md:text-sm opacity-80">
                       <strong>Expires:</strong>{" "}
                       {new Date(expiresAt).toLocaleString()}
                     </p>
-                    <p className="text-sm opacity-80">
+                    <p className="text-xs md:text-sm opacity-80">
                       <strong>Max views:</strong> {maxViews || "Unlimited"}
                     </p>
-                    <p className="text-sm opacity-80">
+                    <p className="text-xs md:text-sm opacity-80">
                       <strong>Password protected:</strong>{" "}
                       {password ? "Yes" : "No"}
                     </p>
@@ -324,11 +326,11 @@ export default function ShareVault() {
 
                 <button
                   onClick={() => navigate("/")}
-                  className="btn btn-outline btn-lg w-full hover:btn-primary transition-all duration-300 transform hover:scale-105"
+                  className="btn btn-outline btn-md md:btn-lg w-full hover:btn-primary transition-all duration-300 transform hover:scale-105"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
+                    className="h-4 w-4 md:h-5 md:w-5 mr-2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

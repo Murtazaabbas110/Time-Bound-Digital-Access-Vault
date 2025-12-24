@@ -69,15 +69,19 @@ export default function AccessPublic() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center p-4">
-      <div className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-shadow duration-500 w-full max-w-4xl">
-        <div className="card-body p-8">
+    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center p-4 sm:p-6 md:p-8">
+      <div
+        className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-shadow duration-500 
+      w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl 
+      mx-auto rounded-2xl overflow-hidden"
+      >
+        <div className="card-body p-6 sm:p-8 md:p-10">
           {/* Header Section */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8">
             <div className="flex justify-center mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 text-primary animate-pulse"
+                className="h-14 w-14 sm:h-16 sm:w-16 text-primary animate-pulse"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -90,20 +94,20 @@ export default function AccessPublic() {
                 />
               </svg>
             </div>
-            <h1 className="text-4xl font-extrabold text-primary animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary animate-fade-in">
               Secure Vault Access
             </h1>
-            <p className="text-lg text-base-content/70 mt-2">
+            <p className="text-base sm:text-lg text-base-content/70 mt-2">
               Access your shared sensitive information securely
             </p>
           </div>
 
           {/* Error Alert */}
           {error && !content && !needsPassword && (
-            <div className="alert alert-error shadow-lg mb-6 animate-bounce">
+            <div className="alert alert-error shadow-lg mb-6 animate-bounce text-sm sm:text-base">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current shrink-0 h-6 w-6"
+                className="stroke-current shrink-0 h-5 w-5 sm:h-6 sm:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
               >
@@ -121,10 +125,10 @@ export default function AccessPublic() {
           {/* Password Form */}
           {needsPassword && !content && (
             <form onSubmit={handlePasswordSubmit} className="space-y-6">
-              <div className="alert alert-warning shadow-lg animate-pulse">
+              <div className="alert alert-warning shadow-lg animate-pulse text-sm sm:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current shrink-0 h-6 w-6"
+                  className="stroke-current shrink-0 h-5 w-5 sm:h-6 sm:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -138,9 +142,10 @@ export default function AccessPublic() {
                 </svg>
                 <span>This vault is password protected.</span>
               </div>
+
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-lg font-semibold flex items-center justify-center">
+                  <span className="label-text text-base sm:text-lg font-semibold flex items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 mr-2 text-primary"
@@ -163,10 +168,11 @@ export default function AccessPublic() {
                   placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input input-bordered input-lg text-center focus:input-primary transition-all duration-300 hover:shadow-md"
+                  className="input input-bordered input-lg w-full text-center focus:input-primary transition-all duration-300 hover:shadow-md"
                   autoFocus
                 />
               </div>
+
               <button
                 type="submit"
                 className="btn btn-primary btn-lg w-full hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -193,10 +199,10 @@ export default function AccessPublic() {
           {/* Content Display */}
           {content && (
             <>
-              <div className="alert alert-success shadow-lg mb-6 animate-bounce">
+              <div className="alert alert-success shadow-lg mb-6 animate-bounce text-sm sm:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current shrink-0 h-6 w-6"
+                  className="stroke-current shrink-0 h-5 w-5 sm:h-6 sm:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                 >
@@ -210,33 +216,39 @@ export default function AccessPublic() {
                 <span>Vault unlocked successfully!</span>
               </div>
 
-              <div className="mockup-code bg-base-200 p-6 shadow-inner hover:shadow-lg transition-shadow duration-300">
-                <pre className="whitespace-pre-wrap text-lg leading-relaxed">
+              <div className="mockup-code bg-base-200 p-4 sm:p-6 shadow-inner hover:shadow-lg transition-shadow duration-300 overflow-x-auto">
+                <pre className="whitespace-pre-wrap text-sm sm:text-base md:text-lg leading-relaxed font-mono">
                   {content}
                 </pre>
               </div>
 
               {meta && (
-                <div className="mt-8 bg-base-200 rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-semibold text-center mb-4 text-primary">
+                <div className="mt-6 sm:mt-8 bg-base-200 rounded-2xl p-5 sm:p-6 shadow-lg">
+                  <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 text-primary">
                     Vault Details
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
-                    <div className="stat">
-                      <div className="stat-title">Remaining Views</div>
-                      <div className="stat-value text-primary">
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 place-items-center text-center">
+                    <div className="stat bg-base-100/50 rounded-xl p-4 shadow-sm w-full max-w-xs mx-auto">
+                      <div className="stat-title text-sm sm:text-base opacity-70">
+                        Remaining Views
+                      </div>
+                      <div className="stat-value text-primary text-2xl sm:text-3xl font-bold">
                         {meta.remainingViews}
                       </div>
                     </div>
-                    <div className="stat">
-                      <div className="stat-title">Expires At</div>
-                      <div className="stat-value text-secondary text-sm">
+
+                    <div className="stat bg-base-100/50 rounded-xl p-4 shadow-sm w-full max-w-xs mx-auto">
+                      <div className="stat-title text-sm sm:text-base opacity-70">
+                        Expires At
+                      </div>
+                      <div className="stat-value text-secondary text-sm sm:text-base">
                         {new Date(meta.expiresAt).toLocaleString()}
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
+              )}    
             </>
           )}
         </div>

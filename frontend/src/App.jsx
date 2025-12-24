@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -9,71 +9,84 @@ import AccessPublic from "./pages/AccessPublic";
 import VaultLogs from "./pages/VaultLogs";
 import Navbar from "./components/Navbar";
 
-function PrivateRoute({ children }) {
+// Protected Route Wrapper
+function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
-  if (loading)
+
+  if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+      <div className="min-h-screen flex items-center justify-center bg-base-200">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
     );
-  return user ? children : <Login />;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 }
 
-function AppContent() {
+// Main Layout with conditional Navbar
+function AppLayout() {
   const { user } = useAuth();
 
   return (
-    <>
+    <div className="min-h-screen bg-base-200">
       {user && <Navbar />}
-      <div className="min-h-screen bg-base-200">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/access/:token" element={<AccessPublic />} />
+      <Routes>
+        {/* Public routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/access/:token" element={<AccessPublic />} />
 
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/create"
-            element={
-              <PrivateRoute>
-                <CreateVault />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/vault/:id/share"
-            element={
-              <PrivateRoute>
-                <ShareVault />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/vault/:id/logs"
-            element={
-              <PrivateRoute>
-                <VaultLogs />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </div>
-    </>
+        {/* Protected routes */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute>
+              <CreateVault />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vault/:id/share"
+          element={
+            <ProtectedRoute>
+              <ShareVault />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vault/:id/logs"
+          element={
+            <ProtectedRoute>
+              <VaultLogs />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* redirect any unknown route to login */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </div>
   );
 }
 
+// Root Component
 export default function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <AppLayout />
     </AuthProvider>
   );
 }

@@ -26,7 +26,7 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow-lg bg-base-100 rounded-box w-52 border border-base-300"
           >
             <li>
               <Link
@@ -92,16 +92,18 @@ export default function Navbar() {
       <div className="navbar-end gap-4">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center font-bold">
+            <div className="w-15 rounded-full bg-primary text-primary-content flex items-center justify-center font-bold">
               {user?.email?.charAt(0).toUpperCase()}
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-md dropdown-content mt-3 z-10 p-2 shadow-lg bg-base-100 rounded-box w-60 border border-base-300"
           >
             <li className="menu-title">
-              <span className="text-sm">Hello, {user?.email}</span>
+              <span className="text-sm font-semibold">
+                Hello, {user?.email}
+              </span>
             </li>
             <li>
               <a className="hover:bg-primary hover:text-primary-content transition-colors">
@@ -116,7 +118,7 @@ export default function Navbar() {
             <li>
               <button
                 onClick={logout}
-                className="btn btn-outline btn-error btn-sm hover:btn-error-focus transition-colors"
+                className="btn btn-outline btn-error btn-sm hover:btn-error-focus transition-colors w-full text-left justify-start"
               >
                 Logout
               </button>

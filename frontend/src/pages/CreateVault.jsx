@@ -27,16 +27,16 @@ export default function CreateVault() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 py-12">
-      <div className="container mx-auto px-6 max-w-4xl">
-        <div className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-          <div className="card-body p-8">
+    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 py-8 sm:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-xl sm:max-w-2xl lg:max-w-4xl">
+        <div className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-shadow duration-500 rounded-2xl">
+          <div className="card-body p-6 sm:p-8 lg:p-10">
             {/* Header Section */}
-            <div className="text-center mb-8">
+            <div className="text-center mb-6 sm:mb-8">
               <div className="flex justify-center mb-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-16 w-16 text-primary animate-bounce"
+                  className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 text-primary animate-bounce"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -49,20 +49,20 @@ export default function CreateVault() {
                   />
                 </svg>
               </div>
-              <h1 className="text-4xl font-extrabold text-primary animate-fade-in">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary animate-fade-in">
                 Create New Vault
               </h1>
-              <p className="text-lg text-base-content/70 mt-2">
+              <p className="text-base sm:text-lg text-base-content/70 mt-2 max-w-prose mx-auto">
                 Securely store and share sensitive information with time or view
                 limits
               </p>
             </div>
 
             {/* Form Section */}
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="form-control">
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-lg font-semibold flex items-center">
+                  <span className="label-text text-base sm:text-lg font-semibold flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 mr-2 text-primary"
@@ -85,14 +85,14 @@ export default function CreateVault() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. API Key for Project X"
-                  className="input input-bordered input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
+                  className="input input-bordered input-md sm:input-lg focus:input-primary transition-all duration-300 hover:shadow-md w-full"
                   required
                 />
               </div>
 
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-lg font-semibold flex items-center">
+                  <span className="label-text text-base sm:text-lg font-semibold flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 mr-2 text-primary"
@@ -114,17 +114,17 @@ export default function CreateVault() {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder="Paste your secret here... it will be encrypted"
-                  className="textarea textarea-bordered min-h-40 max-h-80 resize-y focus:textarea-primary transition-all duration-300 hover:shadow-md w-full"
+                  className="textarea textarea-bordered textarea-md sm:textarea-lg min-h-48 sm:min-h-56 max-h-80 resize-y focus:textarea-primary transition-all duration-300 hover:shadow-md w-full"
                   required
                 />
               </div>
 
               {/* Action Buttons */}
-              <div className="card-actions justify-end mt-10 space-x-4">
+              <div className="card-actions flex flex-col-reverse sm:flex-row sm:justify-end gap-4 mt-6 sm:mt-10">
                 <button
                   type="button"
                   onClick={() => navigate("/")}
-                  className="btn btn-ghost btn-lg hover:bg-base-200 transition-all duration-300 transform hover:scale-105"
+                  className="btn btn-ghost btn-md sm:btn-lg hover:bg-base-200 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
                   disabled={loading}
                 >
                   <svg
@@ -145,7 +145,7 @@ export default function CreateVault() {
                 </button>
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="btn btn-primary btn-md sm:btn-lg hover:btn-secondary transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto"
                   disabled={loading}
                 >
                   {loading ? (

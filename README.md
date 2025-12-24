@@ -53,7 +53,7 @@ Access app at http://localhost:5173 (or Vite port).
 - No email verification.
 - Dev mode; prod needs secure env management.
 - MongoDB Atlas for DB.
-- If no hosting: Local due to time limits.
+- Local due to time limits.
 
 ## API Documentation
 

@@ -1,0 +1,279 @@
+{
+  "info": {
+    "name": "Time-Bound Digital Access Vault API",
+    "description": "API endpoints for the Time-Bound Digital Access Vault application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Register a new user"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Login and get JWT token"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vaults",
+      "item": [
+        {
+          "name": "Create Vault",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"My Vault\", \"content\": \"Sensitive data\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/vault",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vault"]
+            },
+            "description": "Create a new vault item"
+          }
+        },
+        {
+          "name": "List Vaults",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vault",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vault"]
+            },
+            "description": "List user's vaults"
+          }
+        },
+        {
+          "name": "Get Vault",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vault/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vault", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "vault-id-here"
+                }
+              ]
+            },
+            "description": "Get vault metadata"
+          }
+        },
+        {
+          "name": "Create Share Link",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"expiresAt\": \"2025-12-31T23:59:59Z\", \"maxViews\": 5, \"password\": \"optionalpassword\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/vault/:id/share",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vault", ":id", "share"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "vault-id-here"
+                }
+              ]
+            },
+            "description": "Generate share link for vault"
+          }
+        },
+        {
+          "name": "Get Vault Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vault/:id/logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vault", ":id", "logs"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "vault-id-here"
+                }
+              ]
+            },
+            "description": "Get access logs for vault"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public Access",
+      "item": [
+        {
+          "name": "Access Shared Content",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/access/:token?password=optionalpassword",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "access", ":token"],
+              "query": [
+                {
+                  "key": "password",
+                  "value": "optionalpassword"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "token",
+                  "value": "your-token-here"
+                }
+              ]
+            },
+            "description": "Access shared content (GET with optional password query)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Link Management",
+      "item": [
+        {
+          "name": "Revoke Link",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/link/:id/revoke",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "link", ":id", "revoke"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "link-id-here"
+                }
+              ]
+            },
+            "description": "Revoke a share link"
+          }
+        },
+        {
+          "name": "Get Link Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/link/:id/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "link", ":id", "status"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "link-id-here"
+                }
+              ]
+            },
+            "description": "Get status of a share link"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "token",
+      "value": "your-jwt-token-here"
+    }
+  ]
+}
